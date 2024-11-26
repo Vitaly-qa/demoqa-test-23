@@ -23,12 +23,12 @@ public class StudentRegistrationFormTests {
         Configuration.browserSize = "1928x1980";
         Configuration.pageLoadStrategy = "eager";
 
-
     }
-
         @Test
         void fillFormTests() {
-            open("https://demoqa.com/automation-practice-form");
+            open("/automation-practice-form");
+            executeJavaScript("$('#fixedban').remove()");
+            executeJavaScript("$('footer').remove()");
             $("#firstName").setValue("Vitalik");
             $("#lastName").setValue("Kuzmin");
             $("#userEmail").setValue("avtozp2015@yandex.ru");
@@ -48,7 +48,6 @@ public class StudentRegistrationFormTests {
             $("#react-select-3-input").setValue("NCR").pressEnter();
             $("#react-select-4-input").setValue("Delhi").pressEnter();
             $("#submit").click();
-
 
 
             $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
