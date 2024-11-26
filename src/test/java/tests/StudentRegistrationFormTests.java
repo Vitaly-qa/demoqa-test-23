@@ -49,9 +49,7 @@ public class StudentRegistrationFormTests {
             $("#react-select-4-input").setValue("Delhi").pressEnter();
             $("#submit").click();
 
-
             $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-
             $(".table").shouldHave(text("Student Name")).shouldHave(text("Vitalik Kuzmin"));
             $(".table").shouldHave(text("Student Email")).shouldHave(text("avtozp2015@yandex.ru"));
             $(".table").shouldHave(text("Gender")).shouldHave(text("Male"));
