@@ -18,6 +18,7 @@ public class RegistrationWithPageObjectsTest extends TestBase {
         void successfulRegistrationTest() {
             registrationPage
                     .openPage()
+                    .removeBanners()
                     .setFirstName("Vitalik")
                     .setLastName("Kuzmin")
                     .setEmail("avtozp2015@yandex.ru")
@@ -70,8 +71,17 @@ public class RegistrationWithPageObjectsTest extends TestBase {
         void negativeTest() {
              registrationPage
                      .openPage()
-                     .clickSubmitButton()
-                    .CheckLineRedColor();
+                     .setGender("Male")
+                     .setNumber("891")
+                     .setDateofBirth("08", "July", "1990")
+                     .setSubject("Arts")
+                     .setHobbies("Reading")
+                     .setPicture("voin.jpg")
+                     .setAddress("Klin")
+                     .setState("NCR")
+                     .setCity("Delhi")
+                     .clickSubmitButton();
+
         }
     }
 
