@@ -26,8 +26,9 @@ public class RegistrationPage {
             hobbiesWrapperInput = $("#hobbiesWrapper"),
             uploadPictureInput = $("#uploadPicture"),
             currentAddressInput = $("#currentAddress"),
-            stateInput = $("#react-select-3-input"),
-            cityInput = $("#react-select-4-input"),
+            stateInput = $("#state"),
+            cityInput = $("#city"),
+            stateCityWrapper = $("#stateCity-wrapper"),
             submitInput = $("#submit");
 
     CalendarComponent calendarComponent = new CalendarComponent();
@@ -111,14 +112,17 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setState(String value) {
-        stateInput.setValue(value).pressEnter();
+    public RegistrationPage setState(String state) {
+        stateInput.click();
+        stateCityWrapper.$(byText(state)).click();
 
         return this;
     }
 
-    public RegistrationPage setCity(String value) {
-        cityInput.setValue(value).pressEnter();
+    public RegistrationPage setCity(String city) {
+        cityInput.click();
+        stateCityWrapper.$(byText(city)).click();
+
 
         return this;
     }
