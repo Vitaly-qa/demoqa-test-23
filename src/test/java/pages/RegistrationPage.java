@@ -15,7 +15,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
-    private final SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement
+            firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
             genterWrapperInput = $("#genterWrapper"),
@@ -138,12 +139,6 @@ public class RegistrationPage {
         resultComponent.verifyResult(key, value);
 
         return this;
-    }
-
-    public void CheckLineRedColor() {
-        numberInput.shouldHave(Condition.cssValue("border-color", "rgb(220, 53, 69)"));
-        lastNameInput.shouldHave(Condition.cssValue("border-color", "rgb(220, 53, 69)"));
-        numberInput.shouldHave(Condition.cssValue("border-color", "rgb(220, 53, 69)"));
     }
 
 
