@@ -1,18 +1,12 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.conditions.Value;
 import pages.components.CalendarComponent;
 import pages.components.ResultComponent;
-
-import java.util.Calendar;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
     private final SelenideElement
@@ -144,7 +138,11 @@ public class RegistrationPage {
 
         return this;
     }
+    public RegistrationPage verifyNoSubmittedDialogAppears() {
+        resultComponent.verifyNoDialogAppears();
 
+        return this;
+    }
 
 }
 

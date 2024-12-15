@@ -18,5 +18,6 @@ public class ResultComponent {
         }
 
 
-
+    public void verifyNoDialogAppears() {
+    }
 }
