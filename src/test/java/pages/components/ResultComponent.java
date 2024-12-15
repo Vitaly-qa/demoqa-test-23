@@ -17,7 +17,7 @@ public class ResultComponent {
             $(".table-responsive").$(byText(key)).sibling(0).shouldHave(text(value));
         }
 
-
     public void verifyNoDialogAppears() {
+        $(".modal-dialog").shouldNot(Condition.appear);
     }
 }

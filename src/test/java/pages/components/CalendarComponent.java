@@ -1,7 +1,5 @@
 package pages.components;
 
-import pages.RegistrationPage;
-
 import static com.codeborne.selenide.Selenide.$;
 
 public class CalendarComponent {
@@ -14,5 +12,4 @@ public class CalendarComponent {
 
 
     }
-
 }
