@@ -76,7 +76,7 @@ public class RegistrationWithPageObjectsTest extends TestBase {
                      .setCity("Delhi")
                      .clickSubmitButton();
 
-            registrationPage.verifyNoSubmittedDialogAppears();
+            registrationPage.verifyNORegistrationResultsModalAppears();
         }
 
     }

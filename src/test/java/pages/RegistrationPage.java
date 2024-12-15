@@ -138,7 +138,7 @@ public class RegistrationPage {
 
         return this;
     }
-    public RegistrationPage verifyNoSubmittedDialogAppears() {
+    public RegistrationPage verifyNORegistrationResultsModalAppears() {
         resultComponent.verifyNoDialogAppears();
 
         return this;
