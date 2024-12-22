@@ -8,42 +8,42 @@ public class RegistrationWithPageObjectsTest extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
 
-        @Test
-        void successfulRegistrationTest() {
-            registrationPage
-                    .openPage()
-                    .removeBanners()
-                    .setFirstName("Vitalik")
-                    .setLastName("Kuzmin")
-                    .setEmail("avtozp2015@yandex.ru")
-                    .setGender("Male")
-                    .setNumber("89105138384")
-                    .setDateOfBirth(8, "July", 1990)
-                    .setSubject("Arts")
-                    .setHobbies("Reading")
-                    .setPicture("voin.jpg")
-                    .setAddress("Klin")
-                    .setState("NCR")
-                    .setCity("Delhi")
-                    .clickSubmitButton();
+    @Test
+    void successfulRegistrationTest() {
+        registrationPage
+                .openPage()
+                .removeBanners()
+                .setFirstName("Vitalik")
+                .setLastName("Kuzmin")
+                .setEmail("avtozp2015@yandex.ru")
+                .setGender("Male")
+                .setNumber("89105138384")
+                .setDateOfBirth(8, "July", 1990)
+                .setSubject("Arts")
+                .setHobbies("Reading")
+                .setPicture("voin.jpg")
+                .setAddress("Klin")
+                .setState("NCR")
+                .setCity("Delhi")
+                .clickSubmitButton();
 
-            registrationPage
-                    .verifyRegistrationResultsModalAppears()
-                    .verifyResult("Student Name", "Vitalik Kuzmin")
-                    .verifyResult("Student Email", "avtozp2015@yandex.ru")
-                    .verifyResult("Gender", "Male")
-                    .verifyResult("Mobile", "8910513838")
-                    .verifyResult("Date of Birth", "8 July,1990")
-                    .verifyResult("Subjects", "Arts")
-                    .verifyResult("Hobbies", "Reading")
-                    .verifyResult("Picture", "voin.jpg")
-                    .verifyResult("Address", "Klin")
-                    .verifyResult("State and City", "NCR Delhi");
+        registrationPage
+                .verifyRegistrationResultsModalAppears()
+                .verifyResult("Student Name", "Vitalik Kuzmin")
+                .verifyResult("Student Email", "avtozp2015@yandex.ru")
+                .verifyResult("Gender", "Male")
+                .verifyResult("Mobile", "8910513838")
+                .verifyResult("Date of Birth", "8 July,1990")
+                .verifyResult("Subjects", "Arts")
+                .verifyResult("Hobbies", "Reading")
+                .verifyResult("Picture", "voin.jpg")
+                .verifyResult("Address", "Klin")
+                .verifyResult("State and City", "NCR Delhi");
 
-        }
+    }
 
-        @Test
-        void minimalFillFormTest() {
+    @Test
+    void minimalFillFormTest() {
 
         registrationPage.openPage()
                 .setFirstName("Vitalik")
@@ -59,25 +59,25 @@ public class RegistrationWithPageObjectsTest extends TestBase {
                 .verifyResult("Mobile", "8910513838")
                 .verifyResult("Date of Birth", "8 July,1990");
 
-        }
-
-        @Test
-        void negativeTest() {
-             registrationPage
-                     .openPage()
-                     .setGender("Male")
-                     .setNumber("")
-                     .setDateOfBirth(8, "July", 1990)
-                     .setSubject("Arts")
-                     .setHobbies("Reading")
-                     .setPicture("voin.jpg")
-                     .setAddress("Klin")
-                     .setState("NCR")
-                     .setCity("Delhi")
-                     .clickSubmitButton();
-
-            registrationPage.verifyNoRegistrationResultsModalAppears();
-        }
-
     }
+
+    @Test
+    void negativeTest() {
+        registrationPage
+                .openPage()
+                .setGender("Male")
+                .setNumber("")
+                .setDateOfBirth(8, "July", 1990)
+                .setSubject("Arts")
+                .setHobbies("Reading")
+                .setPicture("voin.jpg")
+                .setAddress("Klin")
+                .setState("NCR")
+                .setCity("Delhi")
+                .clickSubmitButton();
+
+        registrationPage.verifyNoRegistrationResultsModalAppears();
+    }
+
+}
 
