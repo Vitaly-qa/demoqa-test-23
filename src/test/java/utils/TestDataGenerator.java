@@ -83,45 +83,45 @@ public class TestDataGenerator {
             firstName = faker.name().firstName();
             lastName = faker.name().lastName();
             userEmail = faker.internet().emailAddress();
-            userGender = faker.options().option(gender);
+            userGender = faker.options().option(GENDER);
             userNumber = "89" + faker.phoneNumber().subscriberNumber(8);
             monthOfBirth = faker.options().option(MONTHS);
             yearOfBirth = faker.number().numberBetween(1901, 2023);
             dayOfBirth = generateValidDay(monthOfBirth, yearOfBirth);
-            subject = faker.options().option(subjects);
-            hobbies = faker.options().option(hobbyOptions);
-            pictures = faker.options().option(morePictures);
+            subject = faker.options().option(SUBJECTS);
+            hobbies = faker.options().option(HOBBY_OPTIONS);
+            pictures = faker.options().option(MORE_PICTURES);
             currentAddress = faker.address().streetAddress();
-            randomState = faker.options().option(stateCities.keySet().toArray(new String[0]));
+            randomState = faker.options().option(STATE_CITIES.keySet().toArray(new String[0]));
             randomCity = getRandomCity(randomState);
         }
 
         public static String[] MONTHS = {"January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"};
 
-        public static String[] subjects = {"Accounting", "Maths", "Arts", "English", "Physics", "Chemistry",
+        public static String[] SUBJECTS = {"Accounting", "Maths", "Arts", "English", "Physics", "Chemistry",
                 "Computer Science", "Economics", "Social Studies", "History", "Civics", "Commerce", "Hindi", "Biology"};
 
-        public static String[] hobbyOptions = {"Reading", "Sports", "Music"};
+        public static String[] HOBBY_OPTIONS = {"Reading", "Sports", "Music"};
 
-        public static String[] gender = {"Male", "Female", "Other"};
+        public static String[] GENDER = {"Male", "Female", "Other"};
 
-        public static String[] morePictures = {"voin.jpg", "sun.jpg"};
+        public static String[] MORE_PICTURES = {"voin.jpg", "sun.jpg"};
 
-        private static final Map<String, String[]> stateCities = Map.of(
+        private static final Map<String, String[]> STATE_CITIES = Map.of(
                 "NCR", new String[]{"Delhi", "Gurgaon", "Noida"},
                 "Uttar Pradesh", new String[]{"Agra", "Lucknow", "Merrut"},
                 "Haryana", new String[]{"Karnal", "Panipat"},
                 "Rajasthan", new String[]{"Jaipur", "Jaiselmer"}
         );
 
-        public static String getRandomCity(String state) {
-            String[] cities = stateCities.get(state);
+        private static String getRandomCity(String state) {
+            String[] cities = STATE_CITIES.get(state);
 
             return new Faker().options().option(cities);
         }
 
-        public static int getDaysInMonth(String month, int year) {
+        private static int getDaysInMonth(String month, int year) {
             Map<String, Integer> monthDays = new HashMap<>();
             monthDays.put("January", 31);
             monthDays.put("February", isLeapYear(year) ? 29 : 28);
