@@ -15,36 +15,36 @@ public class RegistrationWithFakerTest extends TestBase {
         registrationPage
                 .openPage()
                 .removeBanners()
-                .setFirstName(testDataGenerator.firstName)
-                .setLastName(testDataGenerator.lastName)
-                .setEmail(testDataGenerator.userEmail)
-                .setGender(testDataGenerator.userGender)
-                .setNumber(testDataGenerator.userNumber)
-                .setDateOfBirth(testDataGenerator.dayOfBirth, testDataGenerator.monthOfBirth, testDataGenerator.yearOfBirth)
-                .setSubject(testDataGenerator.subject)
-                .setHobbies(testDataGenerator.hobbies)
-                .setPicture(testDataGenerator.pictures)
-                .setAddress(testDataGenerator.currentAddress)
-                .setState(testDataGenerator.randomState)
-                .setCity(testDataGenerator.randomCity)
+                .setFirstName(testDataGenerator.getFirstName())
+                .setLastName(testDataGenerator.getLastName())
+                .setEmail(testDataGenerator.getUserEmail())
+                .setGender(testDataGenerator.getUserGender())
+                .setNumber(testDataGenerator.getUserNumber())
+                .setDateOfBirth(testDataGenerator.getDayOfBirth(), testDataGenerator.getMonthOfBirth(), testDataGenerator.getYearOfBirth())
+                .setSubject(testDataGenerator.getSubject())
+                .setHobbies(testDataGenerator.getHobbies())
+                .setPicture(testDataGenerator.getPictures())
+                .setAddress(testDataGenerator.getCurrentAddress())
+                .setState(testDataGenerator.getRandomState())
+                .setCity(testDataGenerator.getRandomCity())
                 .clickSubmitButton();
 
         registrationPage
                 .verifyRegistrationResultsModalAppears()
-                .verifyResult("Student Name", testDataGenerator.firstName)
-                .verifyResult("Student Email", testDataGenerator.userEmail)
+                .verifyResult("Student Name", testDataGenerator.getFirstName())
+                .verifyResult("Student Email", testDataGenerator.getUserEmail())
                 .verifyResult("Gender", "Male")
-                .verifyResult("Mobile", testDataGenerator.userNumber)
-                .verifyResult("Date of Birth", testDataGenerator.dayOfBirth
+                .verifyResult("Mobile", testDataGenerator.getUserNumber())
+                .verifyResult("Date of Birth", testDataGenerator.getDayOfBirth()
                         + " "
-                        + testDataGenerator.monthOfBirth
+                        + testDataGenerator.getMonthOfBirth()
                         + ","
-                        + testDataGenerator.yearOfBirth)
-                .verifyResult("Subjects", testDataGenerator.subject)
-                .verifyResult("Hobbies", testDataGenerator.hobbies)
-                .verifyResult("Picture", testDataGenerator.pictures)
-                .verifyResult("Address", testDataGenerator.currentAddress)
-                .verifyResult("State and City", testDataGenerator.randomState + " " + testDataGenerator.randomCity);
+                        + testDataGenerator.getYearOfBirth())
+                .verifyResult("Subjects", testDataGenerator.getSubject())
+                .verifyResult("Hobbies", testDataGenerator.getHobbies())
+                .verifyResult("Picture", testDataGenerator.getPictures())
+                .verifyResult("Address", testDataGenerator.getCurrentAddress())
+                .verifyResult("State and City", testDataGenerator.getRandomState() + " " + testDataGenerator.getRandomCity());
 
     }
 
@@ -52,18 +52,18 @@ public class RegistrationWithFakerTest extends TestBase {
     void minimalFillFormTest() {
 
         registrationPage.openPage()
-                .setFirstName(testDataGenerator.firstName)
-                .setLastName(testDataGenerator.lastName)
-                .setGender(testDataGenerator.userGender)
-                .setNumber(testDataGenerator.userNumber)
-                .setDateOfBirth(testDataGenerator.dayOfBirth, testDataGenerator.monthOfBirth, testDataGenerator.yearOfBirth)
+                .setFirstName(testDataGenerator.getFirstName())
+                .setLastName(testDataGenerator.getLastName())
+                .setGender(testDataGenerator.getUserGender())
+                .setNumber(testDataGenerator.getUserNumber())
+                .setDateOfBirth(testDataGenerator.getDayOfBirth(), testDataGenerator.getMonthOfBirth(), testDataGenerator.getYearOfBirth())
                 .clickSubmitButton();
 
         registrationPage.verifyRegistrationResultsModalAppears()
-                .verifyResult("Student Name", testDataGenerator.firstName)
-                .verifyResult("Gender", testDataGenerator.userGender)
-                .verifyResult("Mobile", testDataGenerator.userNumber)
-                .verifyResult("Date of Birth", testDataGenerator.dayOfBirth + " " + testDataGenerator.monthOfBirth + "," + testDataGenerator.yearOfBirth);
+                .verifyResult("Student Name", testDataGenerator.getFirstName())
+                .verifyResult("Gender", testDataGenerator.getUserGender())
+                .verifyResult("Mobile", testDataGenerator.getUserNumber())
+                .verifyResult("Date of Birth", testDataGenerator.getDayOfBirth() + " " + testDataGenerator.getMonthOfBirth() + "," + testDataGenerator.getYearOfBirth());
 
     }
 
@@ -71,15 +71,15 @@ public class RegistrationWithFakerTest extends TestBase {
     void negativeTest() {
         registrationPage
                 .openPage()
-                .setGender(testDataGenerator.userGender)
+                .setGender(testDataGenerator.getUserGender())
                 .setNumber("")
-                .setDateOfBirth(testDataGenerator.dayOfBirth, testDataGenerator.monthOfBirth, testDataGenerator.yearOfBirth)
-                .setSubject(testDataGenerator.subject)
-                .setHobbies(testDataGenerator.hobbies)
-                .setPicture(testDataGenerator.pictures)
-                .setAddress(testDataGenerator.currentAddress)
-                .setState(testDataGenerator.randomState)
-                .setCity(testDataGenerator.randomCity)
+                .setDateOfBirth(testDataGenerator.getDayOfBirth(), testDataGenerator.getMonthOfBirth(), testDataGenerator.getYearOfBirth())
+                .setSubject(testDataGenerator.getSubject())
+                .setHobbies(testDataGenerator.getHobbies())
+                .setPicture(testDataGenerator.getPictures())
+                .setAddress(testDataGenerator.getCurrentAddress())
+                .setState(testDataGenerator.getRandomState())
+                .setCity(testDataGenerator.getRandomCity())
                 .clickSubmitButton();
 
         registrationPage.verifyNoRegistrationResultsModalAppears();

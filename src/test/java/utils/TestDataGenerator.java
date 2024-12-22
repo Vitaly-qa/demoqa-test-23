@@ -6,30 +6,86 @@ import java.util.HashMap;
 import java.util.Map;
 public class TestDataGenerator {
 
-        public String firstName;
-        public String lastName;
-        public String userEmail;
-        public String userGender;
-        public String userNumber;
-        public String monthOfBirth;
-        public String subject;
-        public String hobbies;
-        public String pictures;
-        public String currentAddress;
-        public String randomState;
-        public String randomCity;
-        public int yearOfBirth;
-        public int dayOfBirth;
+    private String firstName;
+    private String lastName;
+    private String userEmail;
+    private String userGender;
+    private String userNumber;
+    private String monthOfBirth;
+    private String subject;
+    private String hobbies;
+    private String pictures;
+    private String currentAddress;
+    private String randomState;
+    private String randomCity;
+    private int yearOfBirth;
+    private int dayOfBirth;
 
         Faker faker = new Faker();
 
-        public TestDataGenerator () {
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String getUserGender() {
+        return userGender;
+    }
+
+    public String getUserNumber() {
+        return userNumber;
+    }
+
+    public String getMonthOfBirth() {
+        return monthOfBirth;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public String getPictures() {
+        return pictures;
+    }
+
+    public String getCurrentAddress() {
+        return currentAddress;
+    }
+
+    public String getRandomState() {
+        return randomState;
+    }
+
+    public String getRandomCity() {
+        return randomCity;
+    }
+
+    public int getYearOfBirth() {
+        return yearOfBirth;
+    }
+
+    public int getDayOfBirth() {
+        return dayOfBirth;
+    }
+
+    public TestDataGenerator () {
             firstName = faker.name().firstName();
             lastName = faker.name().lastName();
             userEmail = faker.internet().emailAddress();
             userGender = faker.options().option(gender);
             userNumber = "89" + faker.phoneNumber().subscriberNumber(8);
-            monthOfBirth = faker.options().option(months);
+            monthOfBirth = faker.options().option(MONTHS);
             yearOfBirth = faker.number().numberBetween(1901, 2023);
             dayOfBirth = generateValidDay(monthOfBirth, yearOfBirth);
             subject = faker.options().option(subjects);
@@ -40,7 +96,7 @@ public class TestDataGenerator {
             randomCity = getRandomCity(randomState);
         }
 
-        public static String[] months = {"January", "February", "March", "April", "May", "June",
+        public static String[] MONTHS = {"January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December"};
 
         public static String[] subjects = {"Accounting", "Maths", "Arts", "English", "Physics", "Chemistry",
