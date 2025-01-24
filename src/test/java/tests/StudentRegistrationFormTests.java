@@ -1,12 +1,20 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Attachment;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class StudentRegistrationFormTests {
 
@@ -16,8 +24,40 @@ public class StudentRegistrationFormTests {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1928x1980";
         Configuration.pageLoadStrategy = "eager";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
+    }
+
+    @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
+    public static String addVideo() {
+        return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
+                + getVideoUrl(getSessionId())
+                + "' type='video/mp4'></video></body></html>";
 
     }
+
+    public static URL getVideoUrl(String sessionId) {
+        String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId + ".mp4";
+
+        try {
+            return new URL(videoUrl);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getSessionId(){
+        return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
+
+    }
+
 
     @Test
     void fillFormTests() {
@@ -56,6 +96,9 @@ public class StudentRegistrationFormTests {
         $(".table").shouldHave(text("Address")).shouldHave(text("Klin"));
         $(".table").shouldHave(text("State and City")).shouldHave(text("NCR Delhi"));
 
+
     }
+
 }
+
 
