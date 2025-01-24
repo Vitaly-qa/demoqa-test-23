@@ -32,6 +32,8 @@ dependencies {
 
     )
 }
-test {
-    useJUnitPlatform()
+task demoqa_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("demoqa")
+    }
 }
