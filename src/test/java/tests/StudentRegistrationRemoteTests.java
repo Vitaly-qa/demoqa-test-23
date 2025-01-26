@@ -30,17 +30,12 @@ public class StudentRegistrationRemoteTests {
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-//        Configuration.browser = "chrome";
         Configuration.timeout = 10000;
-//        Configuration.holdBrowserOpen = true;
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of("enableVNC", true, "enableVideo", true));
         Configuration.browserCapabilities = capabilities;
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
@@ -54,47 +49,48 @@ public class StudentRegistrationRemoteTests {
         Attach.addVideo();
 
     }
+
     @Test
-    @Tag ("demoqa")
+    @Tag("demoqa")
     void fillFormTests() {
         step("Открыть форму", () -> {
-        open("/automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+            open("/automation-practice-form");
+            executeJavaScript("$('#fixedban').remove()");
+            executeJavaScript("$('footer').remove()");
         });
         step("Заполнение формы", () -> {
-        $("#firstName").setValue("Vitalik");
-        $("#lastName").setValue("Kuzmin");
-        $("#userEmail").setValue("avtozp2015@yandex.ru");
-        $("#genterWrapper").$(byText("Male")).click();
-        $("#userNumber").setValue("89105138384");
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").click();
-        $(".react-datepicker__month-select").selectOption("July");
-        $(".react-datepicker__year-select").click();
-        $(".react-datepicker__year-select").selectOption("1990");
-        $(".react-datepicker__day.react-datepicker__day--008").click();
-        $("#subjectsContainer").click();
-        $("#subjectsInput").setValue("Arts").pressEnter();
-        $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#uploadPicture").uploadFromClasspath("voin.jpg");
-        $("#currentAddress").setValue("Klin");
-        $("#react-select-3-input").setValue("NCR").pressEnter();
-        $("#react-select-4-input").setValue("Delhi").pressEnter();
-        $("#submit").click();
+            $("#firstName").setValue("Vitalik");
+            $("#lastName").setValue("Kuzmin");
+            $("#userEmail").setValue("avtozp2015@yandex.ru");
+            $("#genterWrapper").$(byText("Male")).click();
+            $("#userNumber").setValue("89105138384");
+            $("#dateOfBirthInput").click();
+            $(".react-datepicker__month-select").click();
+            $(".react-datepicker__month-select").selectOption("July");
+            $(".react-datepicker__year-select").click();
+            $(".react-datepicker__year-select").selectOption("1990");
+            $(".react-datepicker__day.react-datepicker__day--008").click();
+            $("#subjectsContainer").click();
+            $("#subjectsInput").setValue("Arts").pressEnter();
+            $("#hobbiesWrapper").$(byText("Reading")).click();
+            $("#uploadPicture").uploadFromClasspath("voin.jpg");
+            $("#currentAddress").setValue("Klin");
+            $("#react-select-3-input").setValue("NCR").pressEnter();
+            $("#react-select-4-input").setValue("Delhi").pressEnter();
+            $("#submit").click();
         });
         step("Верный результат", () -> {
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table").shouldHave(text("Student Name")).shouldHave(text("Vitalik Kuzmin"));
-        $(".table").shouldHave(text("Student Email")).shouldHave(text("avtozp2015@yandex.ru"));
-        $(".table").shouldHave(text("Gender")).shouldHave(text("Male"));
-        $(".table").shouldHave(text("Mobile")).shouldHave(text("8910513838"));
-        $(".table").shouldHave(text("Date of Birth")).shouldHave(text("08 July,1990"));
-        $(".table").shouldHave(text("Subjects")).shouldHave(text("Arts"));
-        $(".table").shouldHave(text("Hobbies")).shouldHave(text("Reading"));
-        $(".table").shouldHave(text("Picture")).shouldHave(text("voin.jpg"));
-        $(".table").shouldHave(text("Address")).shouldHave(text("Klin"));
-        $(".table").shouldHave(text("State and City")).shouldHave(text("NCR Delhi"));
+            $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+            $(".table").shouldHave(text("Student Name")).shouldHave(text("Vitalik Kuzmin"));
+            $(".table").shouldHave(text("Student Email")).shouldHave(text("avtozp2015@yandex.ru"));
+            $(".table").shouldHave(text("Gender")).shouldHave(text("Male"));
+            $(".table").shouldHave(text("Mobile")).shouldHave(text("8910513838"));
+            $(".table").shouldHave(text("Date of Birth")).shouldHave(text("08 July,1990"));
+            $(".table").shouldHave(text("Subjects")).shouldHave(text("Arts"));
+            $(".table").shouldHave(text("Hobbies")).shouldHave(text("Reading"));
+            $(".table").shouldHave(text("Picture")).shouldHave(text("voin.jpg"));
+            $(".table").shouldHave(text("Address")).shouldHave(text("Klin"));
+            $(".table").shouldHave(text("State and City")).shouldHave(text("NCR Delhi"));
         });
 
 
