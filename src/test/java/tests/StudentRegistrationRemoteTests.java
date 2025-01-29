@@ -40,7 +40,7 @@ public class StudentRegistrationRemoteTests {
 
 
     @Test
-    @Tag("smoke")
+    @Tag("SMOKE")
     void fillFormTests() {
         step("Открыть форму", () -> {
             open("/automation-practice-form");
