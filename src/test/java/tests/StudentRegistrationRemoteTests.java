@@ -23,21 +23,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 
 
-public class StudentRegistrationRemoteTests {
-
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        Configuration.timeout = 10000;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of("enableVNC", true, "enableVideo", true));
-        Configuration.browserCapabilities = capabilities;
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }
-
+public class StudentRegistrationRemoteTests extends TestBase {
 
     @Test
     @Tag("SMOKE")
