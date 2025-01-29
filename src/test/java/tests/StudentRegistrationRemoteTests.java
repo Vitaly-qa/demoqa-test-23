@@ -26,7 +26,7 @@ import static io.qameta.allure.Allure.step;
 public class StudentRegistrationRemoteTests extends TestBase {
 
     @Test
-    @Tag("SMOKE")
+    @Tag("smoke")
     void fillFormTests() {
         step("Открыть форму", () -> {
             open("/automation-practice-form");
