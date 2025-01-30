@@ -21,6 +21,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
+import static java.lang.String.format;
 
 
 public class StudentRegistrationRemoteTests {
@@ -28,14 +29,21 @@ public class StudentRegistrationRemoteTests {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        Configuration.timeout = 10000;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        String getWdHost = format("https://user1:1234@%s/wd/hub", System.getProperty("wd", "selenoid.autotests.cloud"));
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of("enableVNC", true, "enableVideo", true));
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion", "125.0");
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        Configuration.pageLoadStrategy = System.getProperty("loadStrategy", "eager");
+        Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
+        Configuration.remote = getWdHost;
         Configuration.browserCapabilities = capabilities;
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+
     }
 
     @AfterEach
