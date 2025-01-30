@@ -35,19 +35,11 @@ public class TestBase {
 
     }
 
-    @BeforeEach
-    void addListener() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }
-
     @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last screenshot");
-        if (!System.getProperty("browser").equalsIgnoreCase("firefox")) {
-            Attach.pageSource();
-            Attach.browserConsoleLogs();
-        }
-        Selenide.closeWebDriver();
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
         Attach.addVideo();
     }
 }
