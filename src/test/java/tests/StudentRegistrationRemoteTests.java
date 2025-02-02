@@ -21,42 +21,12 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
-import static java.lang.String.format;
 
 
-public class StudentRegistrationRemoteTests {
-
-
-    @BeforeAll
-    static void beforeAll() {
-        String getWdHost = format("https://user1:1234@%s/wd/hub", System.getProperty("wd", "selenoid.autotests.cloud"));
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserVersion = System.getProperty("browserVersion", "125.0");
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-        Configuration.pageLoadStrategy = System.getProperty("loadStrategy", "eager");
-        Configuration.baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
-        Configuration.remote = getWdHost;
-        Configuration.browserCapabilities = capabilities;
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
-
-    }
-
-    @AfterEach
-    void addAttachments() {
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
-
-    }
+public class StudentRegistrationRemoteTests extends TestBase {
 
     @Test
-    @Tag("demoqa")
+    @Tag("smoke")
     void fillFormTests() {
         step("Открыть форму", () -> {
             open("/automation-practice-form");
@@ -102,5 +72,4 @@ public class StudentRegistrationRemoteTests {
     }
 
 }
-
 
